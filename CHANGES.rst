@@ -1,19 +1,48 @@
 ``persistent`` Changelog
 ========================
 
-4.0.9 (unreleased)
+4.1.2 (unreleased)
 ------------------
 
 - TBD
 
+4.1.1 (2015-06-02)
+------------------
+
+- Fix manifest and re-upload to fix stray files included in 4.1.0.
+
+4.1.0 (2015-05-19)
+------------------
+
+- Make the Python implementation of ``Persistent`` and ``PickleCache``
+  behave more similarly to the C implementation. In particular, the
+  Python version can now run the complete ZODB and ZEO test suites.
+
+- Fix the hashcode of the Python ``TimeStamp`` on 32-bit platforms.
+
+4.0.9 (2015-04-08)
+------------------
+
+- Make the C and Python ``TimeStamp`` objects behave more alike. The
+  Python version now produces the same ``repr`` and ``.raw()`` output as
+  the C version, and has the same hashcode. In addition, the Python
+  version is now supports ordering and equality like the C version.
+
+- Intern keys of object state in ``__setstate__`` to reduce memory usage
+  when unpickling multiple objects with the same attributes.
+
+- Add support for PyPy3.
+
+- 100% branch coverage.
+
 4.0.8 (2014-03-20)
 ------------------
 
-- Added support for Python 3.4.
+- Add support for Python 3.4.
 
 - In pure-Python ``Persistent``, avoid loading state in ``_p_activate``
   for non-ghost objects (which could corrupt their state).  (PR #9)
-    
+
 - In pure-Python, and don't throw ``POSKeyError`` if ``_p_activate`` is
   called on an object that has never been committed.  (PR #9)
 
